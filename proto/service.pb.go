@@ -81,8 +81,8 @@ type Video struct {
 	Likes         int64                  `protobuf:"varint,3,opt,name=likes,proto3" json:"likes,omitempty"`
 	Comments      int64                  `protobuf:"varint,4,opt,name=comments,proto3" json:"comments,omitempty"`
 	Shares        int64                  `protobuf:"varint,5,opt,name=shares,proto3" json:"shares,omitempty"`
-	Length        float64                `protobuf:"fixed64,6,opt,name=length,proto3" json:"length,omitempty"`
-	WatchTime     float64                `protobuf:"fixed64,7,opt,name=watch_time,json=watchTime,proto3" json:"watch_time,omitempty"`
+	Length        int64                  `protobuf:"varint,6,opt,name=length,proto3" json:"length,omitempty"`
+	WatchTime     int64                  `protobuf:"varint,7,opt,name=watch_time,json=watchTime,proto3" json:"watch_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -152,14 +152,14 @@ func (x *Video) GetShares() int64 {
 	return 0
 }
 
-func (x *Video) GetLength() float64 {
+func (x *Video) GetLength() int64 {
 	if x != nil {
 		return x.Length
 	}
 	return 0
 }
 
-func (x *Video) GetWatchTime() float64 {
+func (x *Video) GetWatchTime() int64 {
 	if x != nil {
 		return x.WatchTime
 	}
@@ -468,9 +468,9 @@ const file_proto_service_proto_rawDesc = "" +
 	"\x05likes\x18\x03 \x01(\x03R\x05likes\x12\x1a\n" +
 	"\bcomments\x18\x04 \x01(\x03R\bcomments\x12\x16\n" +
 	"\x06shares\x18\x05 \x01(\x03R\x06shares\x12\x16\n" +
-	"\x06length\x18\x06 \x01(\x01R\x06length\x12\x1d\n" +
+	"\x06length\x18\x06 \x01(\x03R\x06length\x12\x1d\n" +
 	"\n" +
-	"watch_time\x18\a \x01(\x01R\twatchTime\".\n" +
+	"watch_time\x18\a \x01(\x03R\twatchTime\".\n" +
 	"\x06Videos\x12$\n" +
 	"\x06videos\x18\x01 \x03(\v2\f.proto.VideoR\x06videos\"@\n" +
 	"\fLoginRequest\x12\x14\n" +

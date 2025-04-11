@@ -26,8 +26,8 @@ message Video {
   int64 likes = 3; 
   int64 comments = 4; 
   int64 shares = 5; 
-  double length = 6; 
-  double watch_time = 7; 
+  int64 length = 6; 
+  int64 watch_time = 7; 
 }
 
 message Videos {

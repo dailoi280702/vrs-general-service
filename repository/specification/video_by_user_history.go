@@ -19,6 +19,6 @@ func (v *videoByUserHisotry) GormQuery(db *gorm.DB) *gorm.DB {
 	return db.Model(&model.Video{}).
 		Select("videos.*").
 		Joins("JOIN watch_history on videos.id = watch_history.video_id").
-		Where("watch_history.user_id = ", v.userId).
+		Where("watch_history.user_id = ?", v.userId).
 		Order("watch_history.created_at DESC")
 }

@@ -3,7 +3,7 @@ package request
 import "context"
 
 type GetById struct {
-	Id int64 `validate:"required"`
+	Id int64 `validate:"required,gt=0"`
 }
 
 func (r *GetById) Validate() error {

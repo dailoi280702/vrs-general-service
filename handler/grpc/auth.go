@@ -30,7 +30,9 @@ func (s *Service) Register(ctx context.Context, req *proto.RegisterRequest) (*pr
 
 		if errors.As(err, &validationErrrs) {
 			return nil, status.Error(codes.InvalidArgument, validationErrrs.Error())
-		} else if errors.Is(err, auth.ErrEmailDuplicated) {
+		}
+
+		if errors.Is(err, auth.ErrEmailDuplicated) {
 			return nil, status.Error(codes.InvalidArgument, err.Error())
 		}
 

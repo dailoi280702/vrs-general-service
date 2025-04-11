@@ -6,6 +6,7 @@ type UpdateVideo struct {
 	Id        int64 `validate:"required"`
 	Name      string
 	Likes     int64
+	Views     int64
 	Comments  int64
 	Shares    int64
 	Length    int64
