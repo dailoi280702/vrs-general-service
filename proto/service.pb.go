@@ -24,7 +24,6 @@ const (
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -63,13 +62,6 @@ func (*User) Descriptor() ([]byte, []int) {
 func (x *User) GetEmail() string {
 	if x != nil {
 		return x.Email
-	}
-	return ""
-}
-
-func (x *User) GetPassword() string {
-	if x != nil {
-		return x.Password
 	}
 	return ""
 }
@@ -465,10 +457,9 @@ var File_proto_service_proto protoreflect.FileDescriptor
 
 const file_proto_service_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/service.proto\x12\x05proto\"U\n" +
+	"\x13proto/service.proto\x12\x05proto\"9\n" +
 	"\x04User\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1b\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\xae\x01\n" +
 	"\x05Video\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +

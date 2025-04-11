@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS users
 (
     id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL UNIQUE,
-    name VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
     password TEXT NOT NULL,
 
     PRIMARY KEY (`id`)

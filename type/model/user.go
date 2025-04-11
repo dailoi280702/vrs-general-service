@@ -2,6 +2,7 @@ package model
 
 type User struct {
 	ID       int64
-	Email    *string
+	Email    string
 	FullName string
+	Password string
 }

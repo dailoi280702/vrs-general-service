@@ -36,7 +36,8 @@ func init() {
 }
 
 func GetClient() *gorm.DB {
-	return &gorm.DB{
-		Config: db.Config,
-	}
+	return db
+	// return &gorm.DB{
+	// 	Config: db.Config,
+	// }
 }
