@@ -1,0 +1,7 @@
+packages:
+  github.com/dailoi280702/vrs-general-service/repository/user:
+    config:
+      outpkg: "mockuser"
+      dir: "mock/user"
+    interfaces:
+      I:
