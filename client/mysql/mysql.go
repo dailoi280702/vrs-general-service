@@ -19,7 +19,7 @@ func init() {
 	)
 
 	connectionString := fmt.Sprintf(
-		"%s:%s@(%s:%s)/%s",
+		"%s:%s@(%s:%s)/%s?parseTime=True",
 		cfg.MySQL.User,
 		cfg.MySQL.Pass,
 		cfg.MySQL.Host,

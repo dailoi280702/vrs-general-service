@@ -7,11 +7,12 @@ import (
 	"os/signal"
 	"syscall"
 
-	_ "github.com/dailoi280702/vrs-general-service/client/mysql"
+	"github.com/dailoi280702/vrs-general-service/client/mysql"
 	_ "github.com/dailoi280702/vrs-general-service/client/redis"
 	"github.com/dailoi280702/vrs-general-service/config"
 	"github.com/dailoi280702/vrs-general-service/handler/grpc"
 	"github.com/dailoi280702/vrs-general-service/log"
+	"github.com/dailoi280702/vrs-general-service/migration"
 	"github.com/dailoi280702/vrs-general-service/proto"
 	"google.golang.org/grpc/reflection"
 )
@@ -24,6 +25,10 @@ func main() {
 		errs   = make(chan error)
 		g      = grpc.NewGRPCServer()
 	)
+
+	if err := migration.Migrate(mysql.GetClient()); err != nil {
+		logger.Error("Migration failed", "error", err)
+	}
 
 	defer g.GracefulStop()
 
