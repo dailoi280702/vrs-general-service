@@ -6,6 +6,7 @@ import (
 	context "context"
 
 	grpc "google.golang.org/grpc"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 
 	mock "github.com/stretchr/testify/mock"
 
@@ -169,6 +170,80 @@ func (_c *MockServiceClient_GetUserWatchedHistory_Call) Return(_a0 *proto.Videos
 }
 
 func (_c *MockServiceClient_GetUserWatchedHistory_Call) RunAndReturn(run func(context.Context, *proto.IdRequest, ...grpc.CallOption) (*proto.Videos, error)) *MockServiceClient_GetUserWatchedHistory_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// GetVideoByID provides a mock function with given fields: ctx, in, opts
+func (_m *MockServiceClient) GetVideoByID(ctx context.Context, in *proto.IdRequest, opts ...grpc.CallOption) (*proto.Video, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetVideoByID")
+	}
+
+	var r0 *proto.Video
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *proto.IdRequest, ...grpc.CallOption) (*proto.Video, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *proto.IdRequest, ...grpc.CallOption) *proto.Video); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*proto.Video)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *proto.IdRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockServiceClient_GetVideoByID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetVideoByID'
+type MockServiceClient_GetVideoByID_Call struct {
+	*mock.Call
+}
+
+// GetVideoByID is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *proto.IdRequest
+//   - opts ...grpc.CallOption
+func (_e *MockServiceClient_Expecter) GetVideoByID(ctx interface{}, in interface{}, opts ...interface{}) *MockServiceClient_GetVideoByID_Call {
+	return &MockServiceClient_GetVideoByID_Call{Call: _e.mock.On("GetVideoByID",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockServiceClient_GetVideoByID_Call) Run(run func(ctx context.Context, in *proto.IdRequest, opts ...grpc.CallOption)) *MockServiceClient_GetVideoByID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*proto.IdRequest), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockServiceClient_GetVideoByID_Call) Return(_a0 *proto.Video, _a1 error) *MockServiceClient_GetVideoByID_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockServiceClient_GetVideoByID_Call) RunAndReturn(run func(context.Context, *proto.IdRequest, ...grpc.CallOption) (*proto.Video, error)) *MockServiceClient_GetVideoByID_Call {
 	_c.Call.Return(run)
 	return _c
 }
@@ -391,6 +466,80 @@ func (_c *MockServiceClient_Register_Call) Return(_a0 *proto.User, _a1 error) *M
 }
 
 func (_c *MockServiceClient_Register_Call) RunAndReturn(run func(context.Context, *proto.RegisterRequest, ...grpc.CallOption) (*proto.User, error)) *MockServiceClient_Register_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UpdateVideo provides a mock function with given fields: ctx, in, opts
+func (_m *MockServiceClient) UpdateVideo(ctx context.Context, in *proto.Video, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateVideo")
+	}
+
+	var r0 *emptypb.Empty
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *proto.Video, ...grpc.CallOption) (*emptypb.Empty, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *proto.Video, ...grpc.CallOption) *emptypb.Empty); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*emptypb.Empty)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *proto.Video, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockServiceClient_UpdateVideo_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateVideo'
+type MockServiceClient_UpdateVideo_Call struct {
+	*mock.Call
+}
+
+// UpdateVideo is a helper method to define mock.On call
+//   - ctx context.Context
+//   - in *proto.Video
+//   - opts ...grpc.CallOption
+func (_e *MockServiceClient_Expecter) UpdateVideo(ctx interface{}, in interface{}, opts ...interface{}) *MockServiceClient_UpdateVideo_Call {
+	return &MockServiceClient_UpdateVideo_Call{Call: _e.mock.On("UpdateVideo",
+		append([]interface{}{ctx, in}, opts...)...)}
+}
+
+func (_c *MockServiceClient_UpdateVideo_Call) Run(run func(ctx context.Context, in *proto.Video, opts ...grpc.CallOption)) *MockServiceClient_UpdateVideo_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		variadicArgs := make([]grpc.CallOption, len(args)-2)
+		for i, a := range args[2:] {
+			if a != nil {
+				variadicArgs[i] = a.(grpc.CallOption)
+			}
+		}
+		run(args[0].(context.Context), args[1].(*proto.Video), variadicArgs...)
+	})
+	return _c
+}
+
+func (_c *MockServiceClient_UpdateVideo_Call) Return(_a0 *emptypb.Empty, _a1 error) *MockServiceClient_UpdateVideo_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockServiceClient_UpdateVideo_Call) RunAndReturn(run func(context.Context, *proto.Video, ...grpc.CallOption) (*emptypb.Empty, error)) *MockServiceClient_UpdateVideo_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -9,6 +9,7 @@ package proto
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -457,7 +458,7 @@ var File_proto_service_proto protoreflect.FileDescriptor
 
 const file_proto_service_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/service.proto\x12\x05proto\"9\n" +
+	"\x13proto/service.proto\x12\x05proto\x1a\x1bgoogle/protobuf/empty.proto\"9\n" +
 	"\x04User\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\xae\x01\n" +
@@ -484,13 +485,15 @@ const file_proto_service_proto_rawDesc = "" +
 	"\tIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"'\n" +
 	"\x15GetVideosByIdsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x03(\x03R\x02id2\x95\x02\n" +
+	"\x02id\x18\x01 \x03(\x03R\x02id2\xfa\x02\n" +
 	"\aService\x122\n" +
 	"\x05Login\x12\x13.proto.LoginRequest\x1a\x14.proto.LoginResponse\x12/\n" +
 	"\bRegister\x12\x16.proto.RegisterRequest\x1a\v.proto.User\x12,\n" +
 	"\vGetUserByID\x12\x10.proto.IdRequest\x1a\v.proto.User\x128\n" +
 	"\x15GetUserWatchedHistory\x12\x10.proto.IdRequest\x1a\r.proto.Videos\x12=\n" +
-	"\x0eGetVideosByIds\x12\x1c.proto.GetVideosByIdsRequest\x1a\r.proto.VideosB3Z1github.com/dailoi280702/vrs-general-service/protob\x06proto3"
+	"\x0eGetVideosByIds\x12\x1c.proto.GetVideosByIdsRequest\x1a\r.proto.Videos\x12.\n" +
+	"\fGetVideoByID\x12\x10.proto.IdRequest\x1a\f.proto.Video\x123\n" +
+	"\vUpdateVideo\x12\f.proto.Video\x1a\x16.google.protobuf.EmptyB3Z1github.com/dailoi280702/vrs-general-service/protob\x06proto3"
 
 var (
 	file_proto_service_proto_rawDescOnce sync.Once
@@ -514,6 +517,7 @@ var file_proto_service_proto_goTypes = []any{
 	(*RegisterRequest)(nil),       // 5: proto.RegisterRequest
 	(*IdRequest)(nil),             // 6: proto.IdRequest
 	(*GetVideosByIdsRequest)(nil), // 7: proto.GetVideosByIdsRequest
+	(*emptypb.Empty)(nil),         // 8: google.protobuf.Empty
 }
 var file_proto_service_proto_depIdxs = []int32{
 	1, // 0: proto.Videos.videos:type_name -> proto.Video
@@ -522,13 +526,17 @@ var file_proto_service_proto_depIdxs = []int32{
 	6, // 3: proto.Service.GetUserByID:input_type -> proto.IdRequest
 	6, // 4: proto.Service.GetUserWatchedHistory:input_type -> proto.IdRequest
 	7, // 5: proto.Service.GetVideosByIds:input_type -> proto.GetVideosByIdsRequest
-	4, // 6: proto.Service.Login:output_type -> proto.LoginResponse
-	0, // 7: proto.Service.Register:output_type -> proto.User
-	0, // 8: proto.Service.GetUserByID:output_type -> proto.User
-	2, // 9: proto.Service.GetUserWatchedHistory:output_type -> proto.Videos
-	2, // 10: proto.Service.GetVideosByIds:output_type -> proto.Videos
-	6, // [6:11] is the sub-list for method output_type
-	1, // [1:6] is the sub-list for method input_type
+	6, // 6: proto.Service.GetVideoByID:input_type -> proto.IdRequest
+	1, // 7: proto.Service.UpdateVideo:input_type -> proto.Video
+	4, // 8: proto.Service.Login:output_type -> proto.LoginResponse
+	0, // 9: proto.Service.Register:output_type -> proto.User
+	0, // 10: proto.Service.GetUserByID:output_type -> proto.User
+	2, // 11: proto.Service.GetUserWatchedHistory:output_type -> proto.Videos
+	2, // 12: proto.Service.GetVideosByIds:output_type -> proto.Videos
+	1, // 13: proto.Service.GetVideoByID:output_type -> proto.Video
+	8, // 14: proto.Service.UpdateVideo:output_type -> google.protobuf.Empty
+	8, // [8:15] is the sub-list for method output_type
+	1, // [1:8] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name

@@ -3,12 +3,16 @@ package proto;
 
 option go_package = "github.com/dailoi280702/vrs-general-service/proto";
 
+import "google/protobuf/empty.proto";
+
 service Service {
   rpc Login(LoginRequest) returns (LoginResponse);
   rpc Register(RegisterRequest) returns (User);
   rpc GetUserByID(IdRequest) returns (User);
   rpc GetUserWatchedHistory(IdRequest) returns (Videos);
   rpc GetVideosByIds(GetVideosByIdsRequest) returns (Videos);
+  rpc GetVideoByID(IdRequest) returns (Video);
+  rpc UpdateVideo(Video) returns (google.protobuf.Empty);
 }
 
 message User {

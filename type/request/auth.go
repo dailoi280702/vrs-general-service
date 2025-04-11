@@ -10,14 +10,10 @@ type Register struct {
 	Password string `validate:"required" mod:"trim"`
 }
 
-func (l *Register) Validate() error {
-	if err := transformer.Struct(context.Background(), l); err != nil {
+func (r *Register) Validate() error {
+	if err := transformer.Struct(context.Background(), r); err != nil {
 		return err
 	}
 
-	if err := validator.Struct(l); err != nil {
-		return err
-	}
-
-	return nil
+	return validator.Struct(r)
 }

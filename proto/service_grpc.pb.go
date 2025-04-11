@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,6 +25,8 @@ const (
 	Service_GetUserByID_FullMethodName           = "/proto.Service/GetUserByID"
 	Service_GetUserWatchedHistory_FullMethodName = "/proto.Service/GetUserWatchedHistory"
 	Service_GetVideosByIds_FullMethodName        = "/proto.Service/GetVideosByIds"
+	Service_GetVideoByID_FullMethodName          = "/proto.Service/GetVideoByID"
+	Service_UpdateVideo_FullMethodName           = "/proto.Service/UpdateVideo"
 )
 
 // ServiceClient is the client API for Service service.
@@ -35,6 +38,8 @@ type ServiceClient interface {
 	GetUserByID(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*User, error)
 	GetUserWatchedHistory(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*Videos, error)
 	GetVideosByIds(ctx context.Context, in *GetVideosByIdsRequest, opts ...grpc.CallOption) (*Videos, error)
+	GetVideoByID(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*Video, error)
+	UpdateVideo(ctx context.Context, in *Video, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type serviceClient struct {
@@ -95,6 +100,26 @@ func (c *serviceClient) GetVideosByIds(ctx context.Context, in *GetVideosByIdsRe
 	return out, nil
 }
 
+func (c *serviceClient) GetVideoByID(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*Video, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Video)
+	err := c.cc.Invoke(ctx, Service_GetVideoByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) UpdateVideo(ctx context.Context, in *Video, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Service_UpdateVideo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility.
@@ -104,6 +129,8 @@ type ServiceServer interface {
 	GetUserByID(context.Context, *IdRequest) (*User, error)
 	GetUserWatchedHistory(context.Context, *IdRequest) (*Videos, error)
 	GetVideosByIds(context.Context, *GetVideosByIdsRequest) (*Videos, error)
+	GetVideoByID(context.Context, *IdRequest) (*Video, error)
+	UpdateVideo(context.Context, *Video) (*emptypb.Empty, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -128,6 +155,12 @@ func (UnimplementedServiceServer) GetUserWatchedHistory(context.Context, *IdRequ
 }
 func (UnimplementedServiceServer) GetVideosByIds(context.Context, *GetVideosByIdsRequest) (*Videos, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVideosByIds not implemented")
+}
+func (UnimplementedServiceServer) GetVideoByID(context.Context, *IdRequest) (*Video, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVideoByID not implemented")
+}
+func (UnimplementedServiceServer) UpdateVideo(context.Context, *Video) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateVideo not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -240,6 +273,42 @@ func _Service_GetVideosByIds_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_GetVideoByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetVideoByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetVideoByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetVideoByID(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Service_UpdateVideo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Video)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).UpdateVideo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_UpdateVideo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).UpdateVideo(ctx, req.(*Video))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +335,14 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetVideosByIds",
 			Handler:    _Service_GetVideosByIds_Handler,
+		},
+		{
+			MethodName: "GetVideoByID",
+			Handler:    _Service_GetVideoByID_Handler,
+		},
+		{
+			MethodName: "UpdateVideo",
+			Handler:    _Service_UpdateVideo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
