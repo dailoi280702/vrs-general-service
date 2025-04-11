@@ -30,6 +30,7 @@ func (u *Usecase) Update(ctx context.Context, req request.UpdateVideo) error {
 
 	video.Comments = req.Comments
 	video.Likes = req.Likes
+	video.Views = req.Views
 	video.Name = req.Name
 	video.Shares = req.Shares
 	video.WatchTime = req.WatchTime
