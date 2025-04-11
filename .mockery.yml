@@ -5,3 +5,9 @@ packages:
       dir: "mock/user"
     interfaces:
       I:
+  github.com/dailoi280702/vrs-general-service/proto:
+    config:
+      outpkg: "mockservice"
+      dir: "mocks/service"
+    interfaces:
+      ServiceClient:
