@@ -419,8 +419,10 @@ func (x *IdRequest) GetId() int64 {
 }
 
 type GetVideosByIdsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ids           []int64                `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Deprecated: Marked as deprecated in proto/service.proto.
+	Id            []int64 `protobuf:"varint,1,rep,packed,name=id,proto3" json:"id,omitempty"`
+	Ids           []int64 `protobuf:"varint,2,rep,packed,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -453,6 +455,14 @@ func (x *GetVideosByIdsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetVideosByIdsRequest.ProtoReflect.Descriptor instead.
 func (*GetVideosByIdsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_service_proto_rawDescGZIP(), []int{7}
+}
+
+// Deprecated: Marked as deprecated in proto/service.proto.
+func (x *GetVideosByIdsRequest) GetId() []int64 {
+	if x != nil {
+		return x.Id
+	}
+	return nil
 }
 
 func (x *GetVideosByIdsRequest) GetIds() []int64 {
@@ -492,9 +502,10 @@ const file_proto_service_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
-	"\x15GetVideosByIdsRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\x03R\x03ids2\xfa\x02\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"=\n" +
+	"\x15GetVideosByIdsRequest\x12\x12\n" +
+	"\x02id\x18\x01 \x03(\x03B\x02\x18\x01R\x02id\x12\x10\n" +
+	"\x03ids\x18\x02 \x03(\x03R\x03ids2\xfa\x02\n" +
 	"\aService\x122\n" +
 	"\x05Login\x12\x13.proto.LoginRequest\x1a\x14.proto.LoginResponse\x12/\n" +
 	"\bRegister\x12\x16.proto.RegisterRequest\x1a\v.proto.User\x12,\n" +
