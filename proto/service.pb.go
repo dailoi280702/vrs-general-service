@@ -83,6 +83,7 @@ type Video struct {
 	Shares        int64                  `protobuf:"varint,5,opt,name=shares,proto3" json:"shares,omitempty"`
 	Length        int64                  `protobuf:"varint,6,opt,name=length,proto3" json:"length,omitempty"`
 	WatchTime     int64                  `protobuf:"varint,7,opt,name=watch_time,json=watchTime,proto3" json:"watch_time,omitempty"`
+	Name          string                 `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -164,6 +165,13 @@ func (x *Video) GetWatchTime() int64 {
 		return x.WatchTime
 	}
 	return 0
+}
+
+func (x *Video) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 type Videos struct {
@@ -412,7 +420,7 @@ func (x *IdRequest) GetId() int64 {
 
 type GetVideosByIdsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            []int64                `protobuf:"varint,1,rep,packed,name=id,proto3" json:"id,omitempty"`
+	Ids           []int64                `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -447,9 +455,9 @@ func (*GetVideosByIdsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_service_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetVideosByIdsRequest) GetId() []int64 {
+func (x *GetVideosByIdsRequest) GetIds() []int64 {
 	if x != nil {
-		return x.Id
+		return x.Ids
 	}
 	return nil
 }
@@ -461,7 +469,7 @@ const file_proto_service_proto_rawDesc = "" +
 	"\x13proto/service.proto\x12\x05proto\x1a\x1bgoogle/protobuf/empty.proto\"9\n" +
 	"\x04User\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1b\n" +
-	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\xae\x01\n" +
+	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\xc2\x01\n" +
 	"\x05Video\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05views\x18\x02 \x01(\x03R\x05views\x12\x14\n" +
@@ -470,7 +478,8 @@ const file_proto_service_proto_rawDesc = "" +
 	"\x06shares\x18\x05 \x01(\x03R\x06shares\x12\x16\n" +
 	"\x06length\x18\x06 \x01(\x03R\x06length\x12\x1d\n" +
 	"\n" +
-	"watch_time\x18\a \x01(\x03R\twatchTime\".\n" +
+	"watch_time\x18\a \x01(\x03R\twatchTime\x12\x12\n" +
+	"\x04name\x18\b \x01(\tR\x04name\".\n" +
 	"\x06Videos\x12$\n" +
 	"\x06videos\x18\x01 \x03(\v2\f.proto.VideoR\x06videos\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
@@ -483,9 +492,9 @@ const file_proto_service_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\"\x1b\n" +
 	"\tIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"'\n" +
-	"\x15GetVideosByIdsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x03(\x03R\x02id2\xfa\x02\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
+	"\x15GetVideosByIdsRequest\x12\x10\n" +
+	"\x03ids\x18\x01 \x03(\x03R\x03ids2\xfa\x02\n" +
 	"\aService\x122\n" +
 	"\x05Login\x12\x13.proto.LoginRequest\x1a\x14.proto.LoginResponse\x12/\n" +
 	"\bRegister\x12\x16.proto.RegisterRequest\x1a\v.proto.User\x12,\n" +

@@ -44,6 +44,7 @@ func (s *Service) GetUserWatchedHistory(ctx context.Context, req *proto.IdReques
 			Shares:    v.Shares,
 			Length:    v.Length,
 			WatchTime: v.WatchTime,
+			Name:      v.Name,
 		})
 	}
 
@@ -54,7 +55,7 @@ func (s *Service) GetVideosByIds(ctx context.Context, req *proto.GetVideosByIdsR
 	logger := log.Logger()
 	uc := usecase.New(repository.New(mysql.GetClient))
 
-	videos := req.GetId()
+	videos := req.GetIds()
 	resVideos, err := uc.Video.GetVideoByIds(ctx, request.GetByIds{Ids: videos})
 	if err != nil {
 		var validationErrrs validator.ValidationErrors
@@ -78,6 +79,7 @@ func (s *Service) GetVideosByIds(ctx context.Context, req *proto.GetVideosByIdsR
 			Shares:    v.Shares,
 			Length:    v.Length,
 			WatchTime: v.WatchTime,
+			Name:      v.Name,
 		})
 	}
 
@@ -113,6 +115,7 @@ func (s *Service) GetVideoByID(ctx context.Context, req *proto.IdRequest) (*prot
 		Shares:    video.Shares,
 		Length:    video.Length,
 		WatchTime: video.WatchTime,
+		Name:      video.Name,
 	}
 
 	return res, nil
@@ -128,8 +131,9 @@ func (s *Service) UpdateVideo(ctx context.Context, req *proto.Video) (*emptypb.E
 		Views:     req.GetViews(),
 		Comments:  req.GetComments(),
 		Shares:    req.GetShares(),
-		Length:    int64(req.GetLength()),
-		WatchTime: int64(req.GetWatchTime()),
+		Length:    req.GetLength(),
+		WatchTime: req.GetWatchTime(),
+		Name:      req.GetName(),
 	})
 	if err != nil {
 		var validationErrrs validator.ValidationErrors

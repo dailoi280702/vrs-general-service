@@ -28,6 +28,7 @@ message Video {
   int64 shares = 5; 
   int64 length = 6; 
   int64 watch_time = 7; 
+  string name = 8; 
 }
 
 message Videos {
@@ -54,5 +55,5 @@ message IdRequest {
 }
 
 message GetVideosByIdsRequest {
-  repeated int64 id = 1;
+  repeated int64 ids = 1;
 }
