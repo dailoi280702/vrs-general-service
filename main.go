@@ -8,7 +8,6 @@ import (
 	"syscall"
 
 	"github.com/dailoi280702/vrs-general-service/client/mysql"
-	_ "github.com/dailoi280702/vrs-general-service/client/redis"
 	"github.com/dailoi280702/vrs-general-service/config"
 	"github.com/dailoi280702/vrs-general-service/handler/grpc"
 	"github.com/dailoi280702/vrs-general-service/log"
@@ -33,7 +32,7 @@ func main() {
 	defer g.GracefulStop()
 
 	go func() {
-		l, err := net.Listen("tcp", fmt.Sprintf("localhost:%s", cfg.Port))
+		l, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", cfg.Port))
 		if err != nil {
 			logger.Error("Failed to listen", "port", cfg.Port, "error", err)
 		}
@@ -41,6 +40,8 @@ func main() {
 		if cfg.IsDebug {
 			reflection.Register(g)
 		}
+
+		logger.Info("Server is running", "port", cfg.Port)
 
 		proto.RegisterServiceServer(g, &grpc.Service{})
 		errs <- g.Serve(l)

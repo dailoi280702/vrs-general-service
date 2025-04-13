@@ -13,3 +13,15 @@ test:
 .PHONY: coverage
 coverage:
 	@open tmp/coverage.html
+
+.PHONY: docker-build
+docker-build:
+	@docker build -t dailoi2807/vrs-general-service .
+
+.PHONY: docker-run
+docker-run:
+	@docker run -p 9001:9001 dailoi2807/vrs-general-service
+
+.PHONY: dev
+dev:
+	@air main.go
